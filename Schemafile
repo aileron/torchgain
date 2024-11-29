@@ -1,0 +1,78 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "hpb_salons", id: :string, force: :cascade do |t|
+  t.datetime "created_at", precision: nil
+  t.datetime "updated_at", precision: nil
+  t.datetime "deleted_at", precision: nil
+  t.string "name"
+  t.string "latitude"
+  t.string "longitude"
+  t.string "geohex"
+  t.jsonb "data"
+end
+
+create_table "locations", id: :string, force: :cascade do |t|
+  t.datetime "created_at", precision: nil
+  t.datetime "updated_at", precision: nil
+  t.datetime "deleted_at", precision: nil
+  t.string "name"
+  t.string "latitude"
+  t.string "longitude"
+  t.string "geohex"
+  t.jsonb "data"
+  t.point "geohex_position"
+  t.index ["geohex_position"], name: "index_location_on_geohex_position", using: :gist
+end
+
+create_table "railway_companies", id: :string, force: :cascade do |t|
+  t.integer "rr_code", comment: "鉄道コード"
+  t.integer "status", comment: "状態"
+  t.string "name", null: false, comment: "事業者名"
+  t.string "official_name", comment: "事業者名(正式名称)"
+  t.string "short_name", comment: "事業者名(略称)"
+  t.string "website_url"
+  t.integer "category", comment: "0:その他　1JR 2大手私鉄　3準大手私鉄"
+  t.integer "sort"
+  t.index ["sort"], name: "index_railway_companies_on_sort"
+end
+
+create_table "railway_lines", id: :string, force: :cascade do |t|
+  t.string "company_id", null: false
+  t.integer "status"
+  t.string "name", null: false
+  t.string "kana"
+  t.string "official_name", null: false
+  t.string "color"
+  t.float "latitude"
+  t.float "longitude"
+  t.integer "zoom", comment: "GoogleMap倍率"
+  t.integer "sort"
+  t.index ["latitude", "longitude"], name: "index_railway_lines_on_latitude_and_longitude"
+  t.index ["name"], name: "index_railway_lines_on_name"
+  t.index ["sort"], name: "index_railway_lines_on_sort"
+end
+
+create_table "railway_links", force: :cascade do |t|
+  t.integer "line_id", null: false
+  t.integer "station_id_1", null: false
+  t.integer "station_id_2", null: false
+  t.index ["line_id"], name: "index_railway_links_on_line_id"
+end
+
+create_table "railway_stations", id: :string, force: :cascade do |t|
+  t.integer "station_group_code", comment: "駅グループコード"
+  t.integer "line_id", null: false
+  t.integer "status", default: 0, null: false
+  t.string "name", null: false
+  t.string "zipcode", null: false
+  t.string "address"
+  t.float "latitude"
+  t.float "longitude"
+  t.integer "sort"
+  t.string "geohex"
+  t.integer "prefecture_id"
+  t.index ["latitude", "longitude"], name: "index_railway_stations_on_latitude_and_longitude"
+  t.index ["line_id"], name: "index_railway_stations_on_line_id"
+  t.index ["sort"], name: "index_railway_stations_on_sort"
+  t.index ["status"], name: "index_railway_stations_on_status"
+end
