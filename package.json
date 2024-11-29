@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@types/leaflet": "^1.9.14",
     "vite": "^5.4.11",
     "vite-plugin-ruby": "^5.1.1"
   },
@@ -19,6 +20,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@uupaa/geohex": "^0.0.6",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "braces": "^3.0.3",
@@ -44,6 +46,7 @@
     "queue-microtask": "^1.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "reusify": "^1.0.4",
     "rollup": "^4.27.4",
     "run-parallel": "^1.2.0",

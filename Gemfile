@@ -59,12 +59,17 @@ group :test do
 end
 
 # Vite
-gem 'vite_rails'
+gem "vite_rails"
 
 # Inertia adapter for Rails
-gem 'inertia_rails'
+gem "inertia_rails"
 
 # Development tools
-gem 'foreman'
+gem "foreman"
 
-gem 'ridgepole'
+gem "ridgepole"
+gem "ulid"
+
+gem "active_hash", "~> 3.3"
+
+gem "csv", "~> 3.3"

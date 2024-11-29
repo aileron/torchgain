@@ -22,3 +22,15 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+# Command
+
+DB (shell cmd)
+`ridgepole --apply --config ./config/database.yml`
+`ridgepole --export --config ./config/database.yml -o Schemafile`
+
+Railway (ruby)
+`Railway::Dataloader.call`
+
